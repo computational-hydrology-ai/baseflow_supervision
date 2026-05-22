@@ -9,7 +9,6 @@ from core.utils.small_codes import create_output_dirs
 from MODELS.Differentiable_models import diff_hydro_temp_model
 from MODELS import train_test
 
-
 def main_hydro_temp(args):
     randomseed_config(seed=args["randomseed"][0])
     # Creating output directories and adding it to args

@@ -13,9 +13,9 @@ nmul: 2
 #attr_path: "//storage//work//fzr5082//PGML_STemp_results//inputs//dataset_20231113//attr_415_tmean_ccov.feather" #           no_dam_attr_temp99%_days34sites.feather
 #output_model: "//scratch//fzr5082//PGML_STemp_results//models//"
 # Windows server
-forcing_path: "D:\\data_attr_inputs2003\\f1223_1023_daymet_20240826.npy"    #
-attr_path: "D:\\data_attr_inputs2003\\attr1223_1023_daymet_20240826.npy"
-output_model: "D:\\tmp_dirs" #\\PRMS_SNTEMP_415_208"
+forcing_path: "/home/s0shar47/scratch/salil/dPL_Hydro_SNTEMP/Rahmani, Farshid's files - dPL_Hydro_SNTEMP/f1223_1023_daymet_20240826.npy" 
+attr_path: "/home/s0shar47/scratch/salil/dPL_Hydro_SNTEMP/Rahmani, Farshid's files - dPL_Hydro_SNTEMP/attr1223_1023_daymet_20240826.npy"
+output_model: "/home/s0shar47/scratch/salil/dPL_Hydro_SNTEMP/Rahmani, Farshid's files - dPL_Hydro_SNTEMP/tmp_dirs" #\\PRMS_SNTEMP_415_208"
 # Confucius server
 #forcing_path: "//data//fzr5082//Yalans_camels//force_531.npy"   # forcing_415_tmean_ccov_fillNa.feather" #
 #attr_path: "//data//fzr5082//Yalans_camels//attr_531.npy"
