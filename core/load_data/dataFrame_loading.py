@@ -81,7 +81,7 @@ class DataFrame_dataset(Data_Reader):
 
         data = x
         C, ind1, ind2 = np.intersect1d(self.time, tLst, return_indices=True)
-        data = data[:, ind2, :]
+        data = data[ind2, :, :]
         return np.swapaxes(data, 1, 0)
 
     def getDataConst(self, args, varLst, doNorm=True, rmNan=True):

@@ -25,7 +25,7 @@ nmul: 16
 #BFI
 forcing_path: "/home/s0shar47/scratch/salil/CAMELS_531/BFI/f_obs_531_with_BFI.npy"
 attr_path: "/home/s0shar47/scratch/salil/CAMELS_531/BFI/attr_531.npy"
-output_model: "/home/s0shar47/scratch/salil/DPL/Outputs/CAMELSbfi_531/"
+output_model: "/home/s0shar47/scratch/salil/DPL/Outputs/CAMELS531flow/"
 # ------------------------------------------------
 ###### neural network configuration
 NN_model_name: "LSTM"   # it can be "MLP", "LSTM" too.
@@ -34,7 +34,7 @@ NN_model_name: "LSTM"   # it can be "MLP", "LSTM" too.
    ###  4- "RmseLoss_flow_temp_BFI_AET",    5- "RmseLoss_BFI_temp"   ,    6- "NSEsqrtLoss_flow_temp"
    ###  7- "RmseLoss_flow_temp_BFI_AET_SWE"       8- "RmseLoss_flow_temp_BFI_SWE"
    ###  9- "RmseLoss_flow_temp_SWE",        10- "RmseLoss_flow_BFI_SWE"  11- "RmseLoss_flow_BFI"
-loss_function: "RmseLoss_flow_BFI"      #
+loss_function: "RmseLoss_flow_comb" #"RmseLoss_flow_BFI"      #
 loss_function_weights:
     w1: 3      # w1: flow loss weight (11.0), for RmseLoss_BFI_temp(w1=5.0, w2=1.0, w3=0.05,)
     w2: 1.0
@@ -42,9 +42,10 @@ loss_function_weights:
     ### "00060_Mean": streamflow observation,    "00010_Mean": stream temperature observations
     ### "BFI_AVE": Baseflow index ratio,          "PET": Potential evapotranspiration
 target: ["00060_Mean", "BFI_AVE"]  #["00060_Mean", "00010_Mean", "BFI_AVE",  "swe_nsidc"]   ##"00010_Mean",  "BFI_AVE",
-tRange: [19800101, 20230101]
-t_train: [20180101, 20230101]   # there should be an overlap because of the warm_up
-t_test: [19990101, 20230101]    # the first year is for warm_up
+
+# tRange: [19800101, 20230101]
+# t_train: [20180101, 20230101]   # there should be an overlap because of the warm_up
+# t_test: [19990101, 20230101]    # the first year is for warm_up
 
 
 # Timeline for CAMELS Benchmarks
@@ -63,7 +64,7 @@ hidden_size: 256
 dropout: 0.5
 saveEpoch: 1    # intervals you want to save the model
 no_basins: 25   # number of basins sampled in testing
-varT_NN: ['prcp(mm/day)', 'tmean(C)', "PET_hargreaves(mm/day)"]   # 'tmin(C)', 'vp(Pa)','srad(W/m2)',
+varT_NN: ['prcp(mm/day)', 'tmean(C)', "PET_hargreaves(mm/day)","BFI_AVE"]   # 'tmin(C)', 'vp(Pa)','srad(W/m2)',
 varC_NN: [
   ############   for mswep inputs
   # 'aridity', 'p_mean', 'ETPOT_Hargr', 'NDVI', 'FW', 'SLOPE_PCT', 'SoilGrids1km_sand',
