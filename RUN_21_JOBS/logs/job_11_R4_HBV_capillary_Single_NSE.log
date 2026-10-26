@@ -1,0 +1,42 @@
+============================================================
+SCREEN JOB STARTED
+============================================================
+Job        : 11
+Region     : Region_4
+Model      : HBV_capillary
+GPU        : 0
+Screen     : PUR_R4_NSE_SingleHBV_capillary
+Start time : Fri Oct  9 10:48:53 AM EDT 2026
+============================================================
+/home/s0shar47/scratch/salil/DPL/dPL_Hydro_SNTEMP/MODELS/NN_models/LSTM_models.py:99: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greatly increasing memory usage. To compact weights again call flatten_parameters(). (Triggered internally at /pytorch/aten/src/ATen/native/cudnn/RNN.cpp:1479.)
+  output, hy, cy, reserve, new_weight_buf = torch._cudnn_rnn(
+/home/s0shar47/.local/lib/python3.10/site-packages/numpy/lib/_nanfunctions_impl.py:1867: RuntimeWarning: invalid value encountered in subtract
+  np.subtract(arr, avg, out=arr, casting='unsafe', where=where)
+================================================================================
+TESTING
+================================================================================
+Region : 4
+Model  : HBV_capillary
+GPU    : 0
+
+Action        : [1]
+Forcing       : /scratch/data/PUR_DATA/test/Region_4/daymet_19800101_20141231_forcing_671.npy
+Attributes    : /scratch/data/PUR_DATA/test/Region_4/daymet_19800101_20141231_attr_671.npy
+Output        : /home/s0shar47/scratch/OUTPUTS_Paper1v2/PUR/Single/NSE/HBV_capillary/Region_4
+
+Testing ended
+
+================================================================================
+TESTING COMPLETED
+================================================================================
+
+
+============================================================
+JOB FINISHED
+============================================================
+Job        : 11
+Region     : Region_4
+Model      : HBV_capillary
+Exit code  : 0
+Time       : Fri Oct  9 10:49:18 AM EDT 2026
+============================================================

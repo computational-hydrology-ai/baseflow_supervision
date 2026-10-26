@@ -2,13 +2,11 @@ import torch
 import json
 import os
 
-
 class RmseLoss_flow_BFI(torch.nn.Module):
-    def __init__(self, w1=5, w2=0.02, alpha=0.25, beta=1e-6):
+    def __init__(self, w1=0.5, w2=0.5, alpha=0.25, beta=1e-6):
         super(RmseLoss_flow_BFI, self).__init__()
         self.w1 = w1
         self.w2 = w2
-        
         self.alpha = alpha  # weights of log-sqrt RMSE
         self.beta = beta
 
@@ -19,10 +17,9 @@ class RmseLoss_flow_BFI(torch.nn.Module):
         varTar_NN = args["target"]
         obs_flow = y_obs[:, :, varTar_NN.index("00060_Mean")]
         obs_BFI = y_obs[0, :, varTar_NN.index("BFI_AVE")]
-        
+
         sim_flow = y_sim["flow_sim"].squeeze()    #  simulation
         sim_BFI = y_sim["BFI_sim"].squeeze()
-        
 
         if len(obs_flow[obs_flow==obs_flow]) > 0:
             mask_flow1 = obs_flow == obs_flow
@@ -53,5 +50,5 @@ class RmseLoss_flow_BFI(torch.nn.Module):
 
 
 
-        loss = self.w1 * loss_flow_total + self.w2 * loss_BFI 
+        loss = self.w1 * loss_flow_total + self.w2 * loss_BFI
         return loss

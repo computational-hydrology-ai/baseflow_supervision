@@ -362,4 +362,3 @@ class HBVMul(torch.nn.Module):
                         percolation=PERC_sim.mean(-1, keepdim=True),
                         SWE_sim=SWE_sim.mean(-1, keepdim=True),
                         )
-

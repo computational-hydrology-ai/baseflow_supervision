@@ -81,7 +81,7 @@ class DataFrame_dataset(Data_Reader):
 
         data = x
         C, ind1, ind2 = np.intersect1d(self.time, tLst, return_indices=True)
-        data = data[ind2, :, :]
+        data = data[:, ind2, :]
         return np.swapaxes(data, 1, 0)
 
     def getDataConst(self, args, varLst, doNorm=True, rmNan=True):
@@ -244,7 +244,9 @@ def loadData(args, trange):
         for col in flow_dataset_class.read_data.all_forcings_name:
             out_dict[col] = flow_dataset_class.read_data.getDataTs(args, varLst=[col])
         # reading PET from forcings
-        out_dict["PET_hydro"] = forcing_dataset_class.read_data.getDataTs(args, varLst=["PET_hargreaves(mm/day)"])
+        # out_dict["PET_hydro"] = forcing_dataset_class.read_data.getDataTs(args, varLst=["PET_hargreaves(mm/day)"])
+        out_dict["PET_hydro"] = forcing_dataset_class.read_data.getDataTs(args, varLst=["PEVAP"])
+    
     if args["temp_model_name"] != "None":
         out_dict["x_temp_model"] = forcing_dataset_class.read_data.getDataTs(args, varLst=args["varT_temp_model"])
         out_dict["c_temp_model"] = forcing_dataset_class.read_data.getDataConst(args, varLst=args["varC_temp_model"])

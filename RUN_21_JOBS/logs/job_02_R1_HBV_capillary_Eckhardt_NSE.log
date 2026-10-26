@@ -1,0 +1,40 @@
+============================================================
+SCREEN JOB STARTED
+============================================================
+Job        : 02
+Region     : Region_1
+Model      : HBV_capillary
+GPU        : 1
+Screen     : PUR_R1_NSE_EckhardtHBV_capillary
+Start time : Thu Oct  8 11:31:36 PM EDT 2026
+============================================================
+/home/s0shar47/scratch/salil/DPL/dPL_Hydro_SNTEMP/MODELS/NN_models/LSTM_models.py:99: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greatly increasing memory usage. To compact weights again call flatten_parameters(). (Triggered internally at /pytorch/aten/src/ATen/native/cudnn/RNN.cpp:1479.)
+  output, hy, cy, reserve, new_weight_buf = torch._cudnn_rnn(
+================================================================================
+TESTING
+================================================================================
+Region : 1
+Model  : HBV_capillary
+GPU    : 1
+
+Action        : [1]
+Forcing       : /scratch/data/PUR_DATA/test/Region_1/daymet_19800101_20141231_forcing_671_eckhardt_mmday.npy
+Attributes    : /scratch/data/PUR_DATA/test/Region_1/daymet_19800101_20141231_attr_671.npy
+Output        : /home/s0shar47/scratch/OUTPUTS_Paper1v2/PUR/Eckhardt_Multi/NSE/HBV_capillary/Region_1
+
+Testing ended
+
+================================================================================
+TESTING COMPLETED
+================================================================================
+
+
+============================================================
+JOB FINISHED
+============================================================
+Job        : 02
+Region     : Region_1
+Model      : HBV_capillary
+Exit code  : 0
+Time       : Thu Oct  8 11:32:11 PM EDT 2026
+============================================================

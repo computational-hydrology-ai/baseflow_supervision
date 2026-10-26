@@ -1,5 +1,5 @@
 import sys
-
+import importlib
 sys.path.append("../")
 import torch
 import os
@@ -8,11 +8,10 @@ from core.utils.randomseed_config import randomseed_config
 from core.utils.small_codes import create_output_dirs
 from MODELS.Differentiable_models import diff_hydro_temp_model
 from MODELS import train_test
-import importlib
 import config.read_configurations as rc
+
 importlib.reload(rc)
 
-print(rc.config_hydro_temp["forcing_path"])
 
 def main_hydro_temp(args):
     randomseed_config(seed=args["randomseed"][0])
@@ -29,7 +28,7 @@ def main_hydro_temp(args):
         )
     if 1 in args["Action"]:  # testing mode
         modelFile = os.path.join(args["out_dir"], "model_Ep" + str(args["EPOCH_testing"]) + ".pt")
-        diff_model = torch.load(modelFile)
+        diff_model = torch.load(modelFile, weights_only=False)
         train_test.test_differentiable_model(
             args=args,
             diff_model=diff_model

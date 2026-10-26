@@ -32,8 +32,7 @@ def calStatbasinnorm(
     temparea = np.repeat(np.expand_dims(basinarea, axis=(1,2)), y.shape[0]).reshape(y.shape)
     tempprep = np.repeat(np.expand_dims(meanprep, axis=(1, 2)), y.shape[0]).reshape(y.shape)
     flowua = (y * 0.0283168 * 3600 * 24) / (
-        (temparea * (10**6)) * (tempprep * 10 ** (-2)) / 365
-    )  # unit (m^3/day)/(m^3/day)
+        (temparea * (10**6)) * (tempprep * 10 ** (-3)) / 365)  # unit (m^3/day)/(m^3/day)
     a = flowua.flatten()
     b = a[~np.isnan(a)]  # kick out Nan
     b = np.log10(
@@ -49,6 +48,7 @@ def calStatbasinnorm(
 
 def calStatgamma(x):  # for daily streamflow and precipitation
     a = x.flatten()
+    print(a)
     bb = a[~np.isnan(a)]  # kick out Nan
     b = bb[bb != (-999999)]
     b = np.log10(

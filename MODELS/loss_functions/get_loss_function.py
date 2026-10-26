@@ -6,16 +6,52 @@ def get_lossFun(args, obs):
     spec = importlib.util.spec_from_file_location(args["loss_function"], "./MODELS/loss_functions/" + args["loss_function"] + ".py")
     module = spec.loader.load_module()
     loss_function_default = getattr(module, args["loss_function"])
-    if (args["loss_function"] =="RmseLoss_flow_temp"): #or \
+    # if (args["loss_function"] =="RmseLoss_flow_temp"): #or \
             # (args["loss_function"] =="RmseLoss_flow_temp_BFI") or \
             # (args["loss_function"] =="RmseLoss_flow_temp_BFI_AET") or \
             # (args["loss_function"] =="RmseLoss_BFI_temp") or \
             # (args["loss_function"] =="RmseLoss_flow_temp_BFI_AET_SWE") or \
             # (args["loss_function"] =="RmseLoss_flow_temp_BFI_SWE") or \
             # (args["loss_function"] =="RmseLoss_flow_temp_SWE") or \
-            # (args["loss_function"] =="RmseLoss_flow_BFI_SWE"):
+            # (args["loss_function"] =="RmseLoss_flow_BFI_SWE"): or \
+    if    (args["loss_function"] =="RmseLoss_flow_BFI"):
         lossFun = loss_function_default(w1=args["loss_function_weights"]["w1"],
                                         w2=args["loss_function_weights"]["w2"])
+    elif    (args["loss_function"] =="RmseLoss_flow_baseflow"):
+        lossFun = loss_function_default(w1=args["loss_function_weights"]["w1"],
+                                        w2=args["loss_function_weights"]["w2"])
+    elif    (args["loss_function"] =="RmseLoss1_flow_baseflow"):
+            lossFun = loss_function_default(w1=args["loss_function_weights"]["w1"],
+                                            w2=args["loss_function_weights"]["w2"])
+
+    elif    (args["loss_function"] =="RmseLoss_4items"):
+                lossFun = loss_function_default(w1=args["loss_function_weights"]["w1"],
+                                                w2=args["loss_function_weights"]["w2"])
+    elif    (args["loss_function"] =="RmseLoss_4itemsv2"):
+                    lossFun = loss_function_default(w1=args["loss_function_weights"]["w1"],
+                                                    w2=args["loss_function_weights"]["w2"])
+                
+    elif args["loss_function"] == "NseLoss_flow_baseflow":
+
+        std_obs_flow = np.nanstd(
+            obs[:, :, args["target"].index("00060_Mean")],
+            axis=0
+        )
+        std_obs_flow[std_obs_flow != std_obs_flow] = 1.0
+
+        std_obs_baseflow = np.nanstd(
+            obs[:, :, args["target"].index("baseflow")],
+            axis=0
+        )
+        std_obs_baseflow[std_obs_baseflow != std_obs_baseflow] = 1.0
+
+        lossFun = loss_function_default(
+            w1=args["loss_function_weights"]["w1"],
+            w2=args["loss_function_weights"]["w2"],
+            stdarray_flow=std_obs_flow,
+            stdarray_baseflow=std_obs_baseflow
+        )
+        
     elif (args["loss_function"] == "NSEsqrtLoss_flow_temp"):
         std_obs_flow = np.nanstd(obs[:, :, args["target"].index("00060_Mean")], axis=0)
         std_obs_flow[std_obs_flow != std_obs_flow] = 1.0
